@@ -42,9 +42,16 @@ export function signIn(req, res) {
   });
 }
 
-export async function login(req, res) {
+export function login(req, res) {
+  let fondos = [
+    "/assets/img/login-bg.png",
+    "/assets/img/login2-bg.png",
+    "/assets/img/login3-bg.jpg"
+  ]
+  
   return res.render('website/login', {
-    title: 'Iniciar Sesión',
+    title: 'Bienvenido',
+    background: fondos[Math.floor(Math.random()*3)]
   });}
 
 export async function resetPassword(req, res) {

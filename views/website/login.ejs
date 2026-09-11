@@ -1,7 +1,7 @@
-  <!-- views\website\login.ejs -->
-  
-  
-  <% layout("layouts/access") %>
+<!-- views\website\login.ejs -->
+
+
+<% layout("layouts/access") %>
   <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-start">
 
     <div class="login-form bg-white bg-opacity-90 p-5 mt-5">
@@ -11,12 +11,12 @@
        sdfasd
        fasd -->
       <div class="text-center mb-4">
-        <img
-          src="/assets/img/ulimaLogo.png"
-          width="203"
-          height="50"
-          alt="Universidad de Lima"
-        >
+        <img src="/assets/img/ulimaLogo.png" width="203" height="50" alt="Universidad de Lima">
+      </div>
+
+      <!--Alerta Error-->
+      <div id="alertMessage" class="alert alert-danger d-none" role="alert">
+        Llena todos los campos.
       </div>
 
       <!-- Usuario -->
@@ -25,13 +25,12 @@
           Usuario
         </label>
 
-        <input
-          class="form-control"
-          type="text"
-          name="username"
-          id="txtUser"
-          placeholder="Ingrese su usuario"
-        >
+        <input 
+        class="form-control" 
+        type="text" 
+        name="username" 
+        id="txtUser" 
+        placeholder="Ingrese su usuario">
       </div>
 
       <!-- Contraseña -->
@@ -40,18 +39,17 @@
           Contraseña
         </label>
 
-        <input
-          class="form-control"
-          type="password"
-          name="password"
-          id="txtPassword"
-          placeholder="Ingrese su contraseña"
-        >
+        <input class="form-control" type="password" name="password" id="txtPassword"
+          placeholder="Ingrese su contraseña">
       </div>
 
       <!-- Botón -->
       <div class="d-grid mb-3">
-        <button type="button" class="btn btn-dark" onclick="ingresar()">
+        <button type="button" 
+        class="btn btn-dark" 
+        onclick="ingresar()"
+        id = "btnIngresar">
+
           Iniciar Sesión
         </button>
       </div>
@@ -102,12 +100,58 @@
     </div>
 
     <script>
-      function ingresar(){
+      function ingresar() {
         let username = document.getElementById("txtUser").value;
         console.log(username);
 
         let password = document.getElementById("txtPassword").value;
         console.log(password);
+
+        if (username == "" || password == "") {
+          let alertMessage = document.getElementById("alertMessage");
+          alertMessage.classList.remove("d-none");
+          alertMessage.classList.add("alert-danger");
+          alertMessage.classList.remove("alert-success");
+          alertMessage.innerHTML = "LLENA LOS CAMPOS CARAJO";
+
+        } else {
+          if (username == "admin" && password == "123") {
+            alertMessage.classList.remove("d-none");
+            alertMessage.innerHTML = "Bienvenido";
+            alertMessage.classList.remove("alert-danger");
+            alertMessage.classList.add("alert-success");
+
+            document.getElementById("txtUser").disabled = true;
+            document.getElementById("txtPassword").disabled = true;
+            document.getElementById("btnIngresar").disabled = true;
+
+            setInterval(() =>{
+              window.location.href="/dashboard.html";
+            }, 5000)
+
+          } else {
+            alertMessage.classList.remove("d-none");
+            alertMessage.classList.add("alert-danger");
+            alertMessage.classList.remove("alert-success");
+            alertMessage.innerHTML = "Credenciales inválidas.";
+          }
+        }
+
+        setInterval(() => {
+        alertMessage.classList.add("d-none");
+        }, 5000);
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        let fondos = [
+          "/assets/img/login-bg.png",
+          "/assets/img/login2-bg.png",
+          "/assets/img/login3-bg.jpg"
+        ];
+        setInterval(() => {
+          let indice = Math.floor(Math.random() * 3);
+          document.body.style.backgroundImage = `url('${fondos[indice]}')`;
+        }, 1000);
+      });
 
     </script>
