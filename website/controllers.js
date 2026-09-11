@@ -8,6 +8,13 @@ export function home(req, res) {
   });
 }
 
+export function register(req, res) {
+  return res.render('website/register', {
+    title: 'Crear cuenta',
+    
+  });
+}
+
 export function about(req, res) {
   return res.render('website/about', {
     title: 'Acerca de',

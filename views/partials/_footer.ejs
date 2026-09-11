@@ -1,180 +1,114 @@
-<!-- views/partials/_footer.ejs -->
-<footer class="bg-dark text-white mt-auto">
-
-  <div class="container py-5">
-
+<footer class="text-light py-5 mt-5" style="background-color: #0b0c10; border-top: 1px solid rgba(255,255,255,0.08); font-family: 'Segoe UI', system-ui, sans-serif;">
+  <div class="container">
     <div class="row g-4">
-
-      <!-- Información -->
-      <div class="col-12 col-md-6 col-lg-4">
-
-        <div class="d-flex align-items-center mb-3">
-
-          <i class="bi bi-shield-fill-check text-success fs-3 me-2"></i>
-
-          <h5 class="mb-0 fw-bold">
-            PlayerStats
-          </h5>
-
-        </div>
-
-        <p class="text-secondary mb-0">
-          Plataforma para consultar, explorar y gestionar
-          información y estadísticas de jugadores de FIFA / EA FC.
+      
+      <!-- Columna 1: Info General -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="fw-bold mb-3 gradient-text" style="letter-spacing: 0.5px;">
+          PrácticaLima
+        </h5>
+        <p class="small" style="color: #8f94a6; line-height: 1.6;">
+          Bolsa de prácticas pre-profesionales para estudiantes de la Universidad de Lima.
         </p>
-
       </div>
 
-      <!-- Navegación -->
-      <div class="col-6 col-md-3 col-lg-2">
-
-        <h6 class="text-uppercase fw-bold mb-3">
-          Navegación
-        </h6>
-
-        <ul class="list-unstyled">
-
-          <li class="mb-2">
-            <a
-              href="/"
-              class="text-secondary text-decoration-none">
-              Inicio
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/players"
-              class="text-secondary text-decoration-none">
-              Jugadores
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/teams"
-              class="text-secondary text-decoration-none">
-              Equipos
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/leagues"
-              class="text-secondary text-decoration-none">
-              Ligas
-            </a>
-          </li>
-
+      <!-- Columna 2: Plataforma -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 1.5px; font-size: 0.8rem; opacity: 0.9;">Plataforma</h6>
+        <ul class="list-unstyled small custom-footer-links">
+          <li class="mb-2"><a href="/convocatorias">Convocatorias</a></li>
+          <li class="mb-2"><a href="/empresas">Empresas</a></li>
+          <li class="mb-2"><a href="/publicar">Publicar convocatoria</a></li>
         </ul>
-
       </div>
 
-      <!-- Explorar -->
-      <div class="col-6 col-md-3 col-lg-3">
-
-        <h6 class="text-uppercase fw-bold mb-3">
-          Explorar
-        </h6>
-
-        <ul class="list-unstyled">
-
-          <li class="mb-2">
-            <a
-              href="/players"
-              class="text-secondary text-decoration-none">
-              Todos los jugadores
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/players?sort=ranking"
-              class="text-secondary text-decoration-none">
-              Mejor valorados
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/players?position=GK"
-              class="text-secondary text-decoration-none">
-              Arqueros
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a
-              href="/players?position=ST"
-              class="text-secondary text-decoration-none">
-              Delanteros
-            </a>
-          </li>
-
+      <!-- Columna 3: Ayuda -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 1.5px; font-size: 0.8rem; opacity: 0.9;">Ayuda</h6>
+        <ul class="list-unstyled small custom-footer-links">
+          <li class="mb-2"><a href="/faq">Preguntas frecuentes</a></li>
+          <li class="mb-2"><a href="/terminos">Términos del servicio</a></li>
+          <li class="mb-2"><a href="/privacidad">Privacidad de datos</a></li>
         </ul>
-
       </div>
 
-      <!-- Redes / proyecto -->
-      <div class="col-12 col-lg-3">
+      <!-- Columna 4: Contacto -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 1.5px; font-size: 0.8rem; opacity: 0.9;">Contacto</h6>
+        <ul class="list-unstyled small" style="color: #8f94a6;">
+          <li class="mb-2 d-flex align-items-center">
+            <i class="bi bi-envelope-at me-2" style="color: #ff4e50;"></i>
+            <a href="mailto:practicas@ulima.edu.pe" class="footer-email-link">practicas@ulima.edu.pe</a>
+          </li>
+          <li class="d-flex align-items-start">
+            <i class="bi bi-geo-alt me-2 mt-1" style="color: #ff4e50;"></i>
+            <span>
+              Av. Javier Prado Este 4600<br>
+              <span style="opacity: 0.7;">Sede Monterrico, Lima</span>
+            </span>
+          </li>
+        </ul>
+      </div>
 
-        <h6 class="text-uppercase fw-bold mb-3">
-          PlayerStats
-        </h6>
-
-        <p class="text-secondary small">
-          Base de datos orientada a la consulta y gestión
-          de estadísticas de jugadores.
-        </p>
-
-        <div class="d-flex gap-2">
-
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
-            <i class="bi bi-github"></i>
-
-          </a>
-
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
-            <i class="bi bi-linkedin"></i>
-
-          </a>
-
-          <a
-            href="#"
-            class="btn btn-outline-secondary btn-sm rounded-circle">
-
-            <i class="bi bi-instagram"></i>
-
-          </a>
-
-        </div>
-
+      <!-- Columna 5: Enlace Institucional -->
+      <div class="col-lg-2 col-md-12 text-md-start text-lg-end">
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 1.5px; font-size: 0.8rem; opacity: 0.9;">Institucional</h6>
+        <a href="https://ulima.edu.pe" target="_blank" rel="noopener noreferrer" class="btn btn-sm custom-cool-btn px-3 py-2 fw-semibold">
+          Universidad de Lima
+        </a>
       </div>
 
     </div>
 
-    <hr class="border-secondary my-4">
-
-    <!-- Copyright -->
-    <div
-      class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-
-      <p class="text-secondary small mb-2 mb-md-0">
-        © 2026 PlayerStats. Todos los derechos reservados.
-      </p>
-
-      <p class="text-secondary small mb-0">
-        Proyecto de gestión de datos deportivos
-      </p>
-
+    <!-- Barra de Derechos Reservados -->
+    <div class="row mt-5 pt-4" style="border-top: 1px solid rgba(255,255,255,0.05);">
+      <div class="col-12 text-center">
+        <p class="small mb-0" style="color: #4f5366; letter-spacing: 0.5px;">© 2026 PrácticaLima</p>
+      </div>
     </div>
 
   </div>
 
+  <style>
+    .gradient-text {
+      background: linear-gradient(45deg, #ff4e50, #f9d423);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .footer-email-link {
+      color: #8f94a6;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-email-link:hover {
+      color: #ffffff;
+    }
+    .custom-footer-links a {
+      color: #8f94a6;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .custom-footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(4px);
+      text-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+    .custom-cool-btn {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .custom-cool-btn:hover {
+      color: #0b0c10;
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+  </style>
 </footer>

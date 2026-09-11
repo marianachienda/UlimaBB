@@ -16,5 +16,6 @@ router.get('/sign-out', requireAuth, controller.logout);
 router.get('/api/v1/sessions', api.sessionInfo);
 router.get('/login', controller.login);
 router.get('/reset-password', controller.resetPassword);
+router.get('/register', controller.register);
 
 export default router;
