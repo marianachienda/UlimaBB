@@ -1,0 +1,384 @@
+<% layout("layouts/website") %>
+
+<!-- =========================================================
+     HERO COMPACTO / DIRECTORIO DE EMPRESAS
+========================================================= -->
+<section class="bg-dark text-white py-5 position-relative" style="background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);">
+  <div class="container py-3">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <span class="badge mb-2 px-3 py-2 text-uppercase fw-semibold" style="background: rgba(249, 212, 35, 0.2); color: #f9d423; border: 1px solid rgba(249, 212, 35, 0.3);">
+          Red de Empleadores
+        </span>
+        <h1 class="display-5 fw-bold mb-2">
+          Empresas <span class="gradient-text">Aliadas</span>
+        </h1>
+        <p class="lead text-secondary mb-0">
+          Explora las organizaciones que apuestan por el talento de la Universidad de Lima y descubre sus ofertas laborales.
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+        <a href="/publicar" class="btn btn-outline-light rounded-pill px-4">
+          <i class="bi bi-building-add me-2"></i>Registrar mi empresa
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FILTROS Y BUSCADOR DE EMPRESAS
+========================================================= -->
+<section class="py-4 bg-light border-bottom">
+  <div class="container">
+    <div class="card border-0 shadow-sm rounded-4 p-3">
+      <form action="/empresas" method="GET">
+        <div class="row g-3 align-items-center">
+          
+          <!-- Búsqueda por Nombre -->
+          <div class="col-12 col-md-5 col-lg-4">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+              <input type="text" name="search" class="form-control border-start-0" placeholder="Buscar por nombre de empresa..." value="<%= typeof query !== 'undefined' ? query.search : '' %>">
+            </div>
+          </div>
+
+          <!-- Sector Industrial -->
+          <div class="col-12 col-md-4 col-lg-3">
+            <select name="rubro" class="form-select">
+              <option value="">Todos los sectores</option>
+              <option value="Banca y Finanzas">Banca y Finanzas</option>
+              <option value="Consumo Masivo">Consumo Masivo</option>
+              <option value="Tecnologia">Tecnología y Software</option>
+              <option value="Consultoria">Consultoría y Auditoría</option>
+              <option value="Industrial">Industrial y Minería</option>
+              <option value="Retail">Retail y Comercio</option>
+            </select>
+          </div>
+
+          <!-- Ubicación -->
+          <div class="col-12 col-md-3 col-lg-3">
+            <select name="ubicacion" class="form-select">
+              <option value="">Cualquier ubicación</option>
+              <option value="Lima">Lima Metropolitana</option>
+              <option value="Provincia">Provincias / Extranjero</option>
+              <option value="Remoto">100% Remoto</option>
+            </select>
+          </div>
+
+          <!-- Botón Buscar -->
+          <div class="col-12 col-lg-2">
+            <button type="submit" class="btn btn-danger-accent w-100 fw-semibold">
+              <i class="bi bi-funnel me-1"></i> Filtrar
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GRID DE TARJETAS DE EMPRESAS
+========================================================= -->
+<section class="py-5 bg-light min-vh-100">
+  <div class="container">
+
+    <!-- Contador de resultados -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <span class="text-muted">
+        Mostrando <strong class="text-dark"><%= typeof empresas !== 'undefined' ? empresas.length : '6' %></strong> empresas registradas
+      </span>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-secondary active"><i class="bi bi-grid-fill"></i></button>
+        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-list-ul"></i></button>
+      </div>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="row g-4">
+
+      <% if (typeof empresas !== 'undefined' && empresas.length > 0) { %>
+        <% empresas.forEach(emp => { %>
+          
+          <!-- TARJETA DINÁMICA -->
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+              <div class="card-body p-4 d-flex flex-column">
+                
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center p-2 border" style="width: 65px; height: 65px;">
+                    <img src="<%= emp.logo || '/assets/img/default-company.png' %>" alt="<%= emp.nombre %>" class="img-fluid rounded-2" style="max-height: 100%;">
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-1 text-dark"><%= emp.nombre %></h5>
+                    <span class="badge bg-light text-secondary border rounded-pill small"><%= emp.rubro %></span>
+                  </div>
+                </div>
+
+                <p class="text-muted small mb-4 flex-grow-1">
+                  <%= emp.descripcion || 'Empresa comprometida con el desarrollo profesional de talentos jóvenes.' %>
+                </p>
+
+                <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                  <span class="badge bg-danger-subtle text-danger fw-semibold px-2 py-1 rounded-pill">
+                    <i class="bi bi-briefcase me-1"></i><%= emp.vacantesCount || 0 %> convocatorias
+                  </span>
+                  <a href="/empresas/<%= emp._id %>" class="btn btn-sm btn-outline-dark rounded-pill px-3">Ver perfil</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        <% }); %>
+      <% } else { %>
+
+        <!-- MOCKUP 1: BCP -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-building fs-2 text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">BCP - Banco de Crédito</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Banca y Finanzas</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Líder en servicios financieros en el Perú, impulsando la transformación digital y el desarrollo de jóvenes profesionales.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>8 vacantes activas
+                </span>
+                <a href="/empresas/1" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 2: Alicorp -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-box-seam fs-2 text-warning"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">Alicorp S.A.A.</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Consumo Masivo</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Empresa multilatina líder en productos de consumo masivo, nutrición animal y productos industriales.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>5 vacantes activas
+                </span>
+                <a href="/empresas/2" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 3: Interbank -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-bank fs-2 text-success"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">Interbank</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Banca y Finanzas</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Una de las principales instituciones financieras del país, enfocada en la innovación y una cultura de trabajo ágil.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>3 vacantes activas
+                </span>
+                <a href="/empresas/3" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 4: Ferreyros -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-gear-wide-connected fs-2 text-info"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">Ferreyros S.A.</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Industrial y Maquinaria</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Empresa líder en la comercialización de bienes de capital y provisión de servicios para el sector minero y construcción.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>4 vacantes activas
+                </span>
+                <a href="/empresas/4" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 5: KPMG -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-file-earmark-bar-graph fs-2 text-danger"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">KPMG Perú</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Consultoría y Auditoría</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Red global de firmas de servicios profesionales que ofrece servicios de auditoría, impuestos y asesoría.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>6 vacantes activas
+                </span>
+                <a href="/empresas/5" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 6: Belcorp -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 h-100 company-card transition-all">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center border" style="width: 65px; height: 65px;">
+                  <i class="bi bi-stars fs-2 text-purple" style="color: #6f42c1;"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1 text-dark">Belcorp</h5>
+                  <span class="badge bg-light text-secondary border rounded-pill small">Cosmética y Retail</span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-4 flex-grow-1">
+                Corporación multimarca que impulsa la belleza para lograr el desarrollo personal de miles de mujeres.
+              </p>
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between mt-auto">
+                <span class="badge rounded-pill fw-semibold px-3 py-1" style="background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+                  <i class="bi bi-briefcase me-1"></i>2 vacantes activas
+                </span>
+                <a href="/empresas/6" class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-semibold">Ver ofertas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% } %>
+
+    </div>
+
+    <!-- PAGINACIÓN -->
+    <nav class="mt-5 d-flex justify-content-center">
+      <ul class="pagination pagination-md">
+        <li class="page-item disabled">
+          <a class="page-link rounded-circle mx-1 border-0 shadow-sm" href="#"><i class="bi bi-chevron-left"></i></a>
+        </li>
+        <li class="page-item active"><a class="page-link rounded-circle mx-1 border-0 shadow-sm custom-page-active" href="#">1</a></li>
+        <li class="page-item"><a class="page-link rounded-circle mx-1 border-0 text-dark shadow-sm" href="#">2</a></li>
+        <li class="page-item">
+          <a class="page-link rounded-circle mx-1 border-0 text-dark shadow-sm" href="#"><i class="bi bi-chevron-right"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA BANNER PARA EMPLEADORES
+========================================================= -->
+<section class="py-5 bg-dark text-white position-relative" style="background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);">
+  <div class="container text-center py-4">
+    <div class="max-w-700 mx-auto">
+      <i class="bi bi-building-check fs-1 text-warning mb-2 d-block"></i>
+      <h2 class="fw-bold mb-3">¿Buscas el mejor talento para tu empresa?</h2>
+      <p class="text-secondary lead mb-4" style="max-width: 650px; margin: 0 auto;">
+        Súmate a nuestra red institucional. Publica tus convocatorias de prácticas pre-profesionales y profesionales llegando directamente a alumnos y egresados de la Universidad de Lima.
+      </p>
+      <a href="/publicar" class="btn btn-danger-accent btn-lg px-4 fw-semibold">
+        <i class="bi bi-plus-circle me-2"></i>Publicar oferta laboral
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ESTILOS CSS COMPLEMENTARIOS
+========================================================= -->
+<style>
+  .gradient-text {
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-danger-accent {
+    background: #ff4e50;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-danger-accent:hover {
+    background: #e04345;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.3);
+  }
+
+  /* Animación Hover Tarjetas */
+  .company-card {
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .company-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08) !important;
+  }
+
+  /* Paginación Activa */
+  .pagination .page-link.custom-page-active {
+    background-color: #ff4e50 !important;
+    color: #fff !important;
+  }
+</style>

@@ -1,5 +1,6 @@
 // admin/models/nation.js
-import { DataTypes } from 'sequelize';
+import pkg from 'sequelize';
+const { DataTypes } = pkg;
 import sequelize from '../../configs/database.js';
 
 const Nation = sequelize.define('Nation', {

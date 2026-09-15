@@ -1,0 +1,403 @@
+<% layout("layouts/website") %>
+
+<!-- =========================================================
+     CABECERA / HERO COMPACTO
+========================================================= -->
+<section class="bg-dark text-white py-5 position-relative" style="background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);">
+  <div class="container py-3">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <span class="badge mb-2 px-3 py-2 text-uppercase fw-semibold" style="background: rgba(255, 78, 80, 0.2); color: #ff4e50; border: 1px solid rgba(255, 78, 80, 0.3);">
+          Bolsa de Trabajo ULima
+        </span>
+        <h1 class="display-5 fw-bold mb-2">
+          Convocatorias de <span class="gradient-text">Prácticas</span>
+        </h1>
+        <p class="lead text-secondary mb-0">
+          Encuentra tu próximo desafío profesional entre las vacantes activas publicadas por empresas aliadas.
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+        <a href="/publicar" class="btn btn-outline-light rounded-pill px-4">
+          <i class="bi bi-plus-circle me-2"></i>¿Eres empresa? Publica aquí
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTENIDO PRINCIPAL: FILTROS Y LISTA
+========================================================= -->
+<section class="py-5 bg-light min-vh-100">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- ================= FILTROS (SIDEBAR) ================= -->
+      <aside class="col-lg-3">
+        
+        <!-- Botón para colapsar filtros en móviles -->
+        <button class="btn btn-outline-dark w-100 d-lg-none mb-3 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false">
+          <span><i class="bi bi-funnel me-2"></i>Filtrar resultados</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+
+        <div class="collapse d-lg-block" id="filtersCollapse">
+          <div class="card border-0 shadow-sm rounded-4 p-4 sticky-top" style="top: 90px; z-index: 10;">
+            
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold mb-0">Filtros</h5>
+              <a href="/convocatorias" class="text-decoration-none small text-danger fw-semibold">Limpiar todo</a>
+            </div>
+
+            <form action="/convocatorias" method="GET">
+
+              <!-- Búsqueda por palabra clave -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold small text-muted text-uppercase">Buscar</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                  <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Ej. UX, Finanzas..." value="<%= typeof query !== 'undefined' ? query.search : '' %>">
+                </div>
+              </div>
+
+              <!-- Carrera / Facultad -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold small text-muted text-uppercase">Carrera</label>
+                <select name="carrera" class="form-select">
+                  <option value="">Todas las carreras</option>
+                  <option value="Administracion">Administración</option>
+                  <option value="Ingenieria Industrial">Ingeniería Industrial</option>
+                  <option value="Ingenieria de Sistemas">Ingeniería de Sistemas</option>
+                  <option value="Derecho">Derecho</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Comunicacion">Comunicación</option>
+                  <option value="Economia">Economía</option>
+                  <option value="Psicologia">Psicología</option>
+                </select>
+              </div>
+
+              <!-- Tipo de Práctica -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold small text-muted text-uppercase">Tipo de Práctica</label>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="tipo" value="Pre-profesional" id="tipoPre">
+                  <label class="form-check-label small" for="tipoPre">Pre-profesional</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="tipo" value="Profesional" id="tipoPro">
+                  <label class="form-check-label small" for="tipoPro">Profesional</label>
+                </div>
+              </div>
+
+              <!-- Modalidad -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold small text-muted text-uppercase">Modalidad</label>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="modalidad" value="Presencial" id="modPresencial">
+                  <label class="form-check-label small" for="modPresencial">Presencial</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="modalidad" value="Hibrido" id="modHibrido">
+                  <label class="form-check-label small" for="modHibrido">Híbrido</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" name="modalidad" value="Remoto" id="modRemoto">
+                  <label class="form-check-label small" for="modRemoto">Remoto</label>
+                </div>
+              </div>
+
+              <!-- Ubicación / Distrito -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold small text-muted text-uppercase">Ubicación</label>
+                <select name="ubicacion" class="form-select">
+                  <option value="">Cualquier lugar</option>
+                  <option value="Surco">Santiago de Surco</option>
+                  <option value="San Isidro">San Isidro</option>
+                  <option value="Miraflores">Miraflores</option>
+                  <option value="Ate">Ate</option>
+                  <option value="San Borja">San Borja</option>
+                </select>
+              </div>
+
+              <!-- Botón Aplicar -->
+              <button type="submit" class="btn btn-danger-accent w-100 fw-semibold py-2">
+                <i class="bi bi-funnel-fill me-1"></i> Aplicar Filtros
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+      </aside>
+
+
+      <!-- ================= LISTADO DE CONVOCATORIAS ================= -->
+      <main class="col-lg-9">
+
+        <!-- Barra superior de resultados -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm">
+          <div>
+            <span class="text-muted small">Mostrando</span>
+            <span class="fw-bold text-dark"><%= typeof convocatorias !== 'undefined' ? convocatorias.length : '8' %></span>
+            <span class="text-muted small">convocatorias disponibles</span>
+          </div>
+
+          <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+            <label class="small text-muted text-nowrap mb-0">Ordenar por:</label>
+            <select class="form-select form-select-sm border-0 bg-light fw-semibold style-select">
+              <option value="recientes">Más recientes</option>
+              <option value="expira">Próximas a vencer</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LISTA DE TARJETAS -->
+        <div class="d-flex flex-column gap-3">
+
+          <% if (typeof convocatorias !== 'undefined' && convocatorias.length > 0) { %>
+            <% convocatorias.forEach(c => { %>
+              
+              <!-- TARJETA DINÁMICA (Si pasas datos desde backend) -->
+              <div class="card border-0 shadow-sm rounded-4 job-card transition-all">
+                <div class="card-body p-4">
+                  <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                      <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center p-2" style="width: 60px; height: 60px; border: 1px solid #eee;">
+                        <img src="<%= c.logo || '/assets/img/default-company.png' %>" alt="Logo" class="img-fluid rounded-2" style="max-height: 100%;">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2 py-1 small"><%= c.tipoPráctica || 'Pre-profesional' %></span>
+                        <span class="badge bg-light text-dark border rounded-pill px-2 py-1 small"><i class="bi bi-geo-alt me-1"></i><%= c.modalidad %></span>
+                      </div>
+                      <h5 class="fw-bold mb-1">
+                        <a href="/convocatorias/<%= c._id %>" class="text-decoration-none text-dark hover-danger"><%= c.titulo %></a>
+                      </h5>
+                      <p class="text-muted mb-0 small"><%= c.empresa %> • <i class="bi bi-pin-map"></i> <%= c.ubicacion %></p>
+                    </div>
+                    <div class="col-12 col-md-auto text-md-end mt-3 mt-md-0 d-flex flex-md-column justify-content-between align-items-end">
+                      <a href="/convocatorias/<%= c._id %>" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-semibold">Ver detalle</a>
+                      <small class="text-muted mt-2 d-block fs-7"><i class="bi bi-clock me-1"></i>Hace 2 días</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <% }); %>
+          <% } else { %>
+
+            <!-- EJEMPLOS MOCKUP (Visibles si no hay backend conectado aún) -->
+
+            <!-- Card 1 -->
+            <div class="card border-0 shadow-sm rounded-4 job-card transition-all">
+              <div class="card-body p-4">
+                <div class="row align-items-center g-3">
+                  <div class="col-auto">
+                    <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center" style="width: 65px; height: 65px; border: 1px solid #eee;">
+                      <i class="bi bi-building fs-2 text-secondary"></i>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                      <span class="badge rounded-pill px-3 py-1" style="background: rgba(255,78,80,0.15); color: #ff4e50;">Pre-profesional</span>
+                      <span class="badge bg-light text-dark border rounded-pill px-2 py-1"><i class="bi bi-laptop me-1"></i>Híbrido</span>
+                      <span class="badge bg-light text-secondary border rounded-pill px-2 py-1">Ing. Sistemas</span>
+                    </div>
+                    <h5 class="fw-bold mb-1">
+                      <a href="/convocatorias/1" class="text-decoration-none text-dark hover-danger">Practicante de Desarrollo Fullstack Node.js</a>
+                    </h5>
+                    <p class="text-muted mb-0 small fw-medium">BCP - Banco de Crédito • <i class="bi bi-geo-alt"></i> La Molina, Lima</p>
+                  </div>
+                  <div class="col-12 col-md-auto text-md-end d-flex flex-md-column justify-content-between align-items-end border-top border-md-0 pt-3 pt-md-0">
+                    <a href="/convocatorias/1" class="btn btn-danger-accent btn-sm rounded-3 px-3 fw-semibold">
+                      Ver vacante <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <span class="text-muted mt-2 d-block" style="font-size: 0.8rem;"><i class="bi bi-clock me-1"></i>Publicado hoy</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card border-0 shadow-sm rounded-4 job-card transition-all">
+              <div class="card-body p-4">
+                <div class="row align-items-center g-3">
+                  <div class="col-auto">
+                    <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center" style="width: 65px; height: 65px; border: 1px solid #eee;">
+                      <i class="bi bi-diagram-3-fill fs-2 text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                      <span class="badge rounded-pill px-3 py-1" style="background: rgba(25,135,84,0.15); color: #198754;">Profesional</span>
+                      <span class="badge bg-light text-dark border rounded-pill px-2 py-1"><i class="bi bi-building me-1"></i>Presencial</span>
+                      <span class="badge bg-light text-secondary border rounded-pill px-2 py-1">Administración / Marketing</span>
+                    </div>
+                    <h5 class="fw-bold mb-1">
+                      <a href="/convocatorias/2" class="text-decoration-none text-dark hover-danger">Practicante Profesional de Trade Marketing</a>
+                    </h5>
+                    <p class="text-muted mb-0 small fw-medium">Alicorp S.A.A. • <i class="bi bi-geo-alt"></i> Miraflores, Lima</p>
+                  </div>
+                  <div class="col-12 col-md-auto text-md-end d-flex flex-md-column justify-content-between align-items-end border-top border-md-0 pt-3 pt-md-0">
+                    <a href="/convocatorias/2" class="btn btn-danger-accent btn-sm rounded-3 px-3 fw-semibold">
+                      Ver vacante <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <span class="text-muted mt-2 d-block" style="font-size: 0.8rem;"><i class="bi bi-clock me-1"></i>Hace 2 días</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card border-0 shadow-sm rounded-4 job-card transition-all">
+              <div class="card-body p-4">
+                <div class="row align-items-center g-3">
+                  <div class="col-auto">
+                    <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center" style="width: 65px; height: 65px; border: 1px solid #eee;">
+                      <i class="bi bi-briefcase-fill fs-2 text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                      <span class="badge rounded-pill px-3 py-1" style="background: rgba(255,78,80,0.15); color: #ff4e50;">Pre-profesional</span>
+                      <span class="badge bg-light text-dark border rounded-pill px-2 py-1"><i class="bi bi-wifi me-1"></i>Remoto</span>
+                      <span class="badge bg-light text-secondary border rounded-pill px-2 py-1">Economía / Finanzas</span>
+                    </div>
+                    <h5 class="fw-bold mb-1">
+                      <a href="/convocatorias/3" class="text-decoration-none text-dark hover-danger">Practicante de Riesgos y Finanzas Corporativas</a>
+                    </h5>
+                    <p class="text-muted mb-0 small fw-medium">Interbank • <i class="bi bi-geo-alt"></i> San Isidro, Lima</p>
+                  </div>
+                  <div class="col-12 col-md-auto text-md-end d-flex flex-md-column justify-content-between align-items-end border-top border-md-0 pt-3 pt-md-0">
+                    <a href="/convocatorias/3" class="btn btn-danger-accent btn-sm rounded-3 px-3 fw-semibold">
+                      Ver vacante <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <span class="text-muted mt-2 d-block" style="font-size: 0.8rem;"><i class="bi bi-clock me-1"></i>Hace 3 días</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card border-0 shadow-sm rounded-4 job-card transition-all">
+              <div class="card-body p-4">
+                <div class="row align-items-center g-3">
+                  <div class="col-auto">
+                    <div class="company-logo rounded-3 bg-light d-flex align-items-center justify-content-center" style="width: 65px; height: 65px; border: 1px solid #eee;">
+                      <i class="bi bi-gear-wide-connected fs-2 text-info"></i>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                      <span class="badge rounded-pill px-3 py-1" style="background: rgba(255,78,80,0.15); color: #ff4e50;">Pre-profesional</span>
+                      <span class="badge bg-light text-dark border rounded-pill px-2 py-1"><i class="bi bi-building me-1"></i>Presencial</span>
+                      <span class="badge bg-light text-secondary border rounded-pill px-2 py-1">Ing. Industrial</span>
+                    </div>
+                    <h5 class="fw-bold mb-1">
+                      <a href="/convocatorias/4" class="text-decoration-none text-dark hover-danger">Asistente/Practicante de Optimización de Procesos</a>
+                    </h5>
+                    <p class="text-muted mb-0 small fw-medium">Ferreyros S.A. • <i class="bi bi-geo-alt"></i> Ate, Lima</p>
+                  </div>
+                  <div class="col-12 col-md-auto text-md-end d-flex flex-md-column justify-content-between align-items-end border-top border-md-0 pt-3 pt-md-0">
+                    <a href="/convocatorias/4" class="btn btn-danger-accent btn-sm rounded-3 px-3 fw-semibold">
+                      Ver vacante <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <span class="text-muted mt-2 d-block" style="font-size: 0.8rem;"><i class="bi bi-clock me-1"></i>Hace 5 días</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <% } %>
+
+        </div>
+
+        <!-- ================= PAGINACIÓN ================= -->
+        <nav class="mt-5 d-flex justify-content-center">
+          <ul class="pagination pagination-md">
+            <li class="page-item disabled">
+              <a class="page-link rounded-circle mx-1 border-0 shadow-sm" href="#" aria-label="Anterior">
+                <i class="bi bi-chevron-left"></i>
+              </a>
+            </li>
+            <li class="page-item active"><a class="page-link rounded-circle mx-1 border-0 shadow-sm custom-page-active" href="#">1</a></li>
+            <li class="page-item"><a class="page-link rounded-circle mx-1 border-0 text-dark shadow-sm" href="#">2</a></li>
+            <li class="page-item"><a class="page-link rounded-circle mx-1 border-0 text-dark shadow-sm" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link rounded-circle mx-1 border-0 text-dark shadow-sm" href="#" aria-label="Siguiente">
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+      </main>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ESTILOS CSS COMPLEMENTARIOS
+========================================================= -->
+<style>
+  /* Gradiente reutilizable */
+  .gradient-text {
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Botón Principal */
+  .btn-danger-accent {
+    background: #ff4e50;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-danger-accent:hover {
+    background: #e04345;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.3);
+  }
+
+  /* Efecto Hover en las Cards */
+  .job-card {
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .job-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Link del título hover */
+  .hover-danger {
+    transition: color 0.2s ease;
+  }
+  .hover-danger:hover {
+    color: #ff4e50 !important;
+  }
+
+  /* Personalización de Paginación */
+  .pagination .page-link.custom-page-active {
+    background-color: #ff4e50 !important;
+    color: #fff !important;
+  }
+
+  /* Select sin borde feo */
+  .style-select:focus {
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  /* Checkbox color accent */
+  .form-check-input:checked {
+    background-color: #ff4e50;
+    border-color: #ff4e50;
+  }
+</style>

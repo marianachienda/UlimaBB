@@ -1,7 +1,7 @@
 // admin/repositories/nations_repositories.js
 import Nation from '../models/nation.js';
-import { Op } from 'sequelize';
-
+import pkg from 'sequelize';
+const { Op } = pkg;
 const showLogs = process.env.SHOW_DB_ERRORS === 'true' || process.env.NODE_ENV === 'development';
 
 class NationRepository {

@@ -15,6 +15,28 @@ export function register(req, res) {
   });
 }
 
+export function convocatorias(req, res) {
+  return res.render('website/convocatorias', {
+    title: 'Convocatorias',
+    
+  });
+}
+
+export function empresas(req, res) {
+  return res.render('website/empresas', {
+    title: 'Empresas',
+    
+  });
+}
+export function comofunciona(req, res) {
+  return res.render('website/comofunciona', {
+    title: 'Cómo Funciona',
+    
+  });
+}
+
+
+
 export function about(req, res) {
   return res.render('website/about', {
     title: 'Acerca de',

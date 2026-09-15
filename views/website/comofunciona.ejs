@@ -1,0 +1,340 @@
+<% layout("layouts/website") %>
+
+<!-- =========================================================
+     HERO COMPACTO
+========================================================= -->
+<section class="bg-dark text-white py-5 position-relative" style="background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);">
+  <div class="container py-3 text-center">
+    <span class="badge mb-3 px-3 py-2 text-uppercase fw-semibold" style="background: rgba(255, 78, 80, 0.2); color: #ff4e50; border: 1px solid rgba(255, 78, 80, 0.3);">
+      Guía de uso
+    </span>
+    <h1 class="display-5 fw-bold mb-3">
+      ¿Cómo funciona <span class="gradient-text">PrácticaLima</span>?
+    </h1>
+    <p class="lead text-secondary mx-auto mb-0" style="max-width: 700px;">
+      Conectamos el talento de la Universidad de Lima con las mejores oportunidades del mercado en un proceso simple, rápido y transparente.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     SECCIÓN PASO A PASO (TABS: ESTUDIANTES / EMPRESAS)
+========================================================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Selector de Perfil -->
+    <div class="d-flex justify-content-center mb-5">
+      <ul class="nav nav-pills custom-pills bg-white p-2 rounded-pill shadow-sm" id="roleTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-pill px-4 py-2 fw-semibold" id="students-tab" data-bs-toggle="tab" data-bs-target="#students-pane" type="button" role="tab" aria-controls="students-pane" aria-selected="true">
+            <i class="bi bi-person-workspace me-2"></i>Para Estudiantes / Egresados
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-pill px-4 py-2 fw-semibold" id="employers-tab" data-bs-toggle="tab" data-bs-target="#employers-pane" type="button" role="tab" aria-controls="employers-pane" aria-selected="false">
+            <i class="bi bi-building me-2"></i>Para Empresas
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- TAB CONTENT -->
+    <div class="tab-content" id="roleTabsContent">
+
+      <!-- ================= PASOS PARA ESTUDIANTES ================= -->
+      <div class="tab-pane fade show active" id="students-pane" role="tabpanel" aria-labelledby="students-tab" tabindex="0">
+        <div class="row g-4 align-items-stretch">
+
+          <!-- Paso 1 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(255, 78, 80, 0.1); color: #ff4e50; font-size: 1.25rem;">
+                01
+              </div>
+              <i class="bi bi-person-vcard fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Crea tu perfil</h5>
+              <p class="text-muted small mb-0">
+                Regístrate usando tu correo institucional ULima. Completa tu información académica y sube tu Curriculum Vitae.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(255, 78, 80, 0.1); color: #ff4e50; font-size: 1.25rem;">
+                02
+              </div>
+              <i class="bi bi-search-heart fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Explora y Filtra</h5>
+              <p class="text-muted small mb-0">
+                Busca convocatorias por carrera, tipo de práctica (Pre o Profesional), modalidad de trabajo y ubicación.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(255, 78, 80, 0.1); color: #ff4e50; font-size: 1.25rem;">
+                03
+              </div>
+              <i class="bi bi-send-check fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Postula en 1 Clic</h5>
+              <p class="text-muted small mb-0">
+                Envía tu postulación directamente a las empresas interesadas sin intermediarios ni trámites complejos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(255, 78, 80, 0.1); color: #ff4e50; font-size: 1.25rem;">
+                04
+              </div>
+              <i class="bi bi-check-circle-fill fs-1 text-success mb-2"></i>
+              <h5 class="fw-bold mb-2">Haz Seguimiento</h5>
+              <p class="text-muted small mb-0">
+                Recibe actualizaciones del estado de tu postulación y alertas de nuevos puestos adaptados a tu perfil.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Call To Action Estudiantes -->
+        <div class="text-center mt-5">
+          <a href="/convocatorias" class="btn btn-danger-accent btn-lg px-4 fw-semibold rounded-3">
+            <i class="bi bi-briefcase me-2"></i>Ver convocatorias disponibles
+          </a>
+        </div>
+      </div>
+
+      <!-- ================= PASOS PARA EMPRESAS ================= -->
+      <div class="tab-pane fade" id="employers-pane" role="tabpanel" aria-labelledby="employers-tab" tabindex="0">
+        <div class="row g-4 align-items-stretch">
+
+          <!-- Paso 1 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(249, 212, 35, 0.2); color: #d4a017; font-size: 1.25rem;">
+                01
+              </div>
+              <i class="bi bi-building-add fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Registra tu Empresa</h5>
+              <p class="text-muted small mb-0">
+                Crea una cuenta corporativa con el RUC de tu organización para iniciar la validación de tu perfil.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(249, 212, 35, 0.2); color: #d4a017; font-size: 1.25rem;">
+                02
+              </div>
+              <i class="bi bi-file-earmark-plus fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Publica Vacantes</h5>
+              <p class="text-muted small mb-0">
+                Define el perfil requerido, funciones, requisitos, modalidad y carrera de interés para tu convocatoria.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(249, 212, 35, 0.2); color: #d4a017; font-size: 1.25rem;">
+                03
+              </div>
+              <i class="bi bi-people fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Filtra Postulantes</h5>
+              <p class="text-muted small mb-0">
+                Accede a los perfiles y CVs de estudiantes y egresados verificados de la Universidad de Lima.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 text-center step-card transition-all">
+              <div class="step-number mx-auto mb-3 fw-bold d-flex align-items-center justify-content-center rounded-circle" style="width: 55px; height: 55px; background: rgba(249, 212, 35, 0.2); color: #d4a017; font-size: 1.25rem;">
+                04
+              </div>
+              <i class="bi bi-award fs-1 text-dark mb-2"></i>
+              <h5 class="fw-bold mb-2">Selecciona Talento</h5>
+              <p class="text-muted small mb-0">
+                Contacta directamente a los mejores candidatos y gestiona tus procesos de selección de forma ágil.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Call To Action Empresas -->
+        <div class="text-center mt-5">
+          <a href="/publicar" class="btn btn-dark btn-lg px-4 fw-semibold rounded-3">
+            <i class="bi bi-plus-circle me-2"></i>Publicar una convocatoria
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     PREGUNTAS FRECUENTES (FAQ ACCORDION)
+========================================================= -->
+<section class="py-5 bg-white">
+  <div class="container py-3">
+
+    <div class="text-center mb-5">
+      <span class="fw-bold text-uppercase" style="color: #ff4e50; letter-spacing: 1px;">Resolvemos tus dudas</span>
+      <h2 class="fw-bold mt-1">Preguntas Frecuentes</h2>
+      <p class="text-muted">Encuentra respuestas a las consultas más comunes sobre la plataforma</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <div class="accordion accordion-flush shadow-sm rounded-4 overflow-hidden border" id="faqAccordion">
+
+          <!-- FAQ 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingOne">
+              <button class="accordion-button fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                ¿Tiene algún costo utilizar la plataforma PrácticaLima?
+              </button>
+            </h2>
+            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary">
+                No. El acceso a la plataforma es totalmente <strong>gratuito</strong> tanto para estudiantes y egresados de la Universidad de Lima como para las empresas empleadoras aliadas.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingTwo">
+              <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                ¿Quiénes pueden postular a las convocatorias?
+              </button>
+            </h2>
+            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary">
+                Las oportunidades están dirigidas exclusivamente a alumnos matriculados y egresados de la Universidad de Lima. Al registrarte con tu correo institucional (<code>@ulima.edu.pe</code>) se habilita el acceso completo a las postulaciones.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingThree">
+              <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                ¿Cómo verifican la autenticidad de las empresas?
+              </button>
+            </h2>
+            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary">
+                Cada empresa registrada pasa por un proceso interno de verificación mediante su RUC e información de contacto corporativa antes de que sus convocatorias sean publicadas en el portal.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingFour">
+              <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                ¿Qué diferencia hay entre Práctica Pre-profesional y Profesional?
+              </button>
+            </h2>
+            <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary">
+                Las prácticas <strong>pre-profesionales</strong> están orientadas a estudiantes activos (por lo general a partir del 7mo ciclo) con un máximo de 30 horas semanales. Las prácticas <strong>profesionales</strong> son para egresados dentro de los periodos normados por ley a tiempo completo (40 horas semanales).
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA FINAL
+========================================================= -->
+<section class="py-5 bg-dark text-white" style="background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);">
+  <div class="container text-center py-3">
+    <h2 class="fw-bold mb-3">¿Tienes más preguntas o necesitas ayuda?</h2>
+    <p class="text-secondary lead mb-4 mx-auto" style="max-width: 600px;">
+      Nuestro equipo de soporte a empleadores y alumnos está disponible para orientarte.
+    </p>
+    <a href="mailto:soporte@practicalima.pe" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+      <i class="bi bi-envelope me-2"></i>Contactar a Soporte
+    </a>
+  </div>
+</section>
+
+<!-- =========================================================
+     ESTILOS COMPLEMENTARIOS
+========================================================= -->
+<style>
+  .gradient-text {
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-danger-accent {
+    background: #ff4e50;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-danger-accent:hover {
+    background: #e04345;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 78, 80, 0.3);
+  }
+
+  /* Estilos Tabs Personalizados */
+  .custom-pills .nav-link {
+    color: #495057;
+    transition: all 0.3s ease;
+  }
+  .custom-pills .nav-link.active {
+    background-color: #ff4e50 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(255, 78, 80, 0.3);
+  }
+
+  /* Hover tarjetitas de pasos */
+  .step-card {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Personalización del Accordion */
+  .accordion-button:not(.collapsed) {
+    color: #ff4e50;
+    background-color: rgba(255, 78, 80, 0.05);
+  }
+  .accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(255, 78, 80, 0.25);
+  }
+</style>

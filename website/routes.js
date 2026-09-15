@@ -17,5 +17,9 @@ router.get('/api/v1/sessions', api.sessionInfo);
 router.get('/login', controller.login);
 router.get('/reset-password', controller.resetPassword);
 router.get('/register', controller.register);
+router.get('/convocatorias', controller.convocatorias);
+router.get('/empresas', controller.empresas);
+router.get('/comofunciona', controller.comofunciona);
+
 
 export default router;
