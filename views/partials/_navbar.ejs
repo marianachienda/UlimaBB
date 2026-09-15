@@ -1,156 +1,96 @@
 <!-- views/partials/_navbar.ejs -->
 
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
-
- <div class="container">
-
-
-
-  <!-- Logo / Brand -->
-
-  <a class="navbar-brand d-flex align-items-center fw-bold" href="/">
-
-   <i class="fa-solid fa-shield-halved text-success fs-4 me-2"></i>
-
-   <span>Práctica Lima</span>
-
-  </a>
-
-
-
-  <!-- Botón menú móvil -->
-
-  <button
-
-   class="navbar-toggler"
-
-   type="button"
-
-   data-bs-toggle="collapse"
-
-   data-bs-target="#navbarContent"
-
-   aria-controls="navbarContent"
-
-   aria-expanded="false"
-
-   aria-label="Abrir menú">
-
-
-
-   <span class="navbar-toggler-icon"></span>
-
-  </button>
-
-
-
-  <!-- Contenido del navbar -->
-
-  <div class="collapse navbar-collapse" id="navbarContent">
-
-
-
-   <!-- Enlaces públicos -->
-
-   <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-
-
-
-    <li class="nav-item">
-
-     <a class="nav-link px-3" href="/">
-
-      <i class="fa-solid fa-house me-1"></i>
-
-      Inicio
-
-     </a>
-
-    </li>
-
-
-
-    <li class="nav-item">
-
-     <a class="nav-link px-3" href="/convocatorias">
-
-      <i class="fa-solid fa-bullhorn me-1"></i>
-
-      Convocatorias
-
-     </a>
-
-    </li>
-
-
-
-    <li class="nav-item">
-
-     <a class="nav-link px-3" href="/empresas">
-
-      <i class="fa-solid fa-building me-1"></i>
-
-      Empresas
-
-     </a>
-
-    </li>
-
-
-
-    <li class="nav-item">
-
-     <a class="nav-link px-3" href="/comofunciona">
-
-      <i class="fa-solid fa-circle-question me-1"></i>
-
-      Cómo funciona
-
-     </a>
-
-    </li>
-
-
-
-   </ul>
-
-
-
-   <!-- Acciones de usuario -->
-
-   <div class="d-flex flex-column flex-lg-row gap-2">
-
-
-
-    <a href="/login" class="btn btn-outline-light">
-
-     Iniciar sesión
-
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: #0b0c10; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+  <div class="container">
+
+    <!-- Logo / Brand -->
+    <a class="navbar-brand d-flex align-items-center fw-bold fs-4" href="/">
+      <div class="rounded-3 d-inline-flex align-items-center justify-content-center me-2" style="width: 36px; height: 36px; background: rgba(255, 78, 80, 0.15); color: #ff4e50;">
+        <i class="bi bi-mortarboard-fill fs-5"></i>
+      </div>
+      <span class="text-white">Práctica<span class="gradient-text">Lima</span></span>
     </a>
 
+    <!-- Botón menú móvil -->
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <!-- Contenido del navbar -->
+    <div class="collapse navbar-collapse" id="navbarContent">
 
-    <a href="/register" class="btn btn-success">
+      <!-- Enlaces públicos -->
+      <ul class="navbar-nav mx-auto mb-3 mb-lg-0 py-2 py-lg-0">
+        <li class="nav-item">
+          <a class="nav-link px-3 custom-nav-link" href="/">
+            <i class="bi bi-house-door me-1"></i> Inicio
+          </a>
+        </li>
 
-     Registrarse
+        <li class="nav-item">
+          <a class="nav-link px-3 custom-nav-link" href="/convocatorias">
+            <i class="bi bi-briefcase me-1"></i> Convocatorias
+          </a>
+        </li>
 
-    </a>
+        <li class="nav-item">
+          <a class="nav-link px-3 custom-nav-link" href="/empresas">
+            <i class="bi bi-building me-1"></i> Empresas
+          </a>
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link px-3 custom-nav-link" href="/comofunciona">
+            <i class="bi bi-question-circle me-1"></i> Cómo funciona
+          </a>
+        </li>
+      </ul>
 
+      <!-- Acciones de usuario -->
+      <div class="d-flex flex-column flex-lg-row gap-2 pt-2 pt-lg-0 border-top border-secondary border-opacity-25 border-lg-0">
+        <a href="/login" class="btn btn-outline-light rounded-pill px-4 fw-semibold">
+          Iniciar sesión
+        </a>
+        <a href="/register" class="btn btn-danger-accent rounded-pill px-4 fw-semibold">
+          Registrarse
+        </a>
+      </div>
 
-   </div>
-
-
+    </div>
 
   </div>
-
-
-
- </div>
-
 </nav>
 
+<!-- ESTILOS EXCLUSIVOS DEL NAVBAR -->
+<style>
+  /* Texto en Gradiente */
+  .gradient-text {
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
+  /* Botón Principal */
+  .btn-danger-accent {
+    background: #ff4e50;
+    color: #ffffff !important;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-danger-accent:hover {
+    background: #e04345;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 78, 80, 0.3);
+  }
 
+  /* Links Navegación */
+  .custom-nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .custom-nav-link:hover {
+    color: #ff4e50 !important;
+  }
+</style>
