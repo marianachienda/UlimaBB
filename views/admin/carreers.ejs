@@ -1,2 +1,272 @@
-<% layout("layouts/admin") %>
-Lista de carreras
+<!-- views/admin/carreers.ejs -->
+<% layout("layouts/admin2") %>
+
+<main class="main-content">
+  <div class="container-fluid py-4">
+    
+    <!-- PAGE HEADER -->
+    <div class="mb-4">
+      <span class="badge rounded-2 text-uppercase px-3 py-2 mb-2" style="background-color: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid rgba(255, 77, 77, 0.3); font-size: 0.75rem; letter-spacing: 0.5px;">
+        Panel de Administración
+      </span>
+      <h3 class="fw-bold mb-0 text-white">
+        <a href="/admin/academic" class="text-decoration-none text-white-50 me-1">
+          <i class="fa fa-book me-2" style="color: #ffaa00;"></i>Gestión Académica
+        </a>
+        <span class="text-white-50 mx-1">/</span>
+        <span style="color: #ffaa00;">Carreras</span>
+      </h3>
+    </div>
+
+    <div class="row">
+
+      <!-- ========================= -->
+      <!-- FORMULARIO -->
+      <!-- ========================= -->
+      <div class="col-lg-4 col-md-5 mb-4">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="background-color: #18191e; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
+          
+          <div class="card-header border-bottom py-3 px-4" style="background-color: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.08) !important;">
+            <h6 class="mb-0 fw-bold text-white">
+              <i class="fa fa-plus me-2" style="color: #ff4d4d;"></i>
+              Nueva Carrera
+            </h6>
+          </div>
+
+          <div class="card-body p-4">
+            <form method="POST" action="/carreers">
+              
+              <div class="mb-4">
+                <label for="name" class="form-label fw-semibold text-white mb-2" style="font-size: 0.875rem;">
+                  Nombre <span style="color: #ff4d4d;">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control border-0 text-white"
+                  placeholder="Ingrese el nombre de la carrera..."
+                  maxlength="30"
+                  required
+                  style="background-color: rgba(255, 255, 255, 0.07); font-size: 0.9rem;"
+                >
+              </div>
+
+              <div class="d-flex justify-content-end gap-2">
+                <a
+                  href="/carreers"
+                  class="btn px-3 py-2 rounded-3 text-white-50 text-decoration-none fw-medium"
+                  style="background-color: rgba(255, 255, 255, 0.05); font-size: 0.85rem;"
+                >
+                  <i class="fa fa-refresh me-1"></i>
+                  Limpiar
+                </a>
+
+                <button
+                  type="submit"
+                  onclick="agregar(event)"
+                  class="btn px-3 py-2 rounded-3 fw-bold text-white border-0"
+                  style="background-color: #ff4d4d; font-size: 0.85rem;"
+                >
+                  <i class="fa fa-save me-1"></i>
+                  Guardar
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ========================= -->
+      <!-- LISTADO -->
+      <!-- ========================= -->
+      <div class="col-lg-8 col-md-7 mb-4">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="background-color: #18191e; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
+          
+          <div class="card-header border-bottom py-3 px-4" style="background-color: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.08) !important;">
+            <h6 class="mb-0 fw-bold text-white">
+              <i class="fa fa-list me-2" style="color: #ffaa00;"></i>
+              Lista de Carreras
+            </h6>
+          </div>
+
+          <div class="card-body p-4">
+
+            <!-- HEADER ACTIONS -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="text-white-50" style="font-size: 0.875rem;">
+                <i class="fa fa-graduation-cap me-1" style="color: #ffaa00;"></i>
+                Carreras registradas
+              </div>
+
+              <div>
+                <a
+                  href="/carreers/new"
+                  class="btn btn-sm px-3 py-2 rounded-3 fw-semibold text-white border-0"
+                  style="background-color: rgba(255, 77, 77, 0.2); color: #ff4d4d !important; border: 1px solid rgba(255, 77, 77, 0.4) !important;"
+                >
+                  <i class="fa fa-plus me-1"></i>
+                  Agregar Registro
+                </a>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-responsive">
+              <table id="keke" class="table table-dark table-hover align-middle mb-0" style="--bs-table-bg: transparent;">
+                <thead>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+                    <th scope="col" class="px-3 py-3 text-uppercase fw-bold" style="color: #ffffff !important; font-size: 0.8rem; letter-spacing: 1px;">ID</th>
+                    <th scope="col" class="px-3 py-3 text-uppercase fw-bold" style="color: #ffffff !important; font-size: 0.8rem; letter-spacing: 1px;">Nombre</th>
+                    <th scope="col" class="px-3 py-3 text-uppercase fw-bold text-end" style="color: #ffffff !important; font-size: 0.8rem; letter-spacing: 1px;">Acciones</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if (carreers && carreers.length > 0) { %>
+                    <% for (const carreer of carreers) { %>
+                      <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                        <td class="px-3 py-3">
+                          <span class="badge rounded-2 px-2.5 py-1.5" style="background-color: rgba(255, 255, 255, 0.08); color: #ff4d4d; font-weight: 600;">
+                            #<%= carreer.id %>
+                          </span>
+                        </td>
+
+                        <td class="px-3 py-3 fw-medium" style="color: #e2e8f0;">
+                          <%= carreer.name %>
+                        </td>
+                        <!--botones editar y eliminar-->
+                        <td class="px-3 py-3 text-end">
+                          <button
+                            
+                            class="btn btn-sm px-2.5 py-1.5 me-1 text-white-50 border-0"
+                            style="background-color: rgba(255, 255, 255, 0.08); font-size: 0.8rem;"
+                            onclick="editar(<%= carreer.id %>, event)"
+
+                            >
+                            <i class="fa fa-edit me-1" style="color: #ffaa00;"></i>
+                            Editar
+                        </button>
+
+                          <button
+                            
+                            class="btn btn-sm px-2.5 py-1.5 border-0"
+                            style="background-color: rgba(255, 77, 77, 0.15); color: #ff4d4d; font-size: 0.8rem;"
+                            onclick="eliminar(<%= carreer.id %>, event)"
+                          >
+                            <i class="fa fa-trash me-1"></i>
+                            Eliminar
+                    </button>
+                        </td>
+                      </tr>
+                    <% } %>
+                  <% } else { %>
+                    <tr>
+                      <td colspan="3" class="text-center text-white-50 py-4">
+                        No se encontraron carreras.
+                      </td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+
+    let carreerRows = document.getElementById("keke").children[1].children.length;
+
+function agregar(event) {
+    event.preventDefault();
+    
+    let name = document.getElementById("name").value;
+    let carreersTable = document.getElementById("keke");
+
+    //Validar que el usuario no envíe un texto vacío o lleno solo de espacios en blanco.
+    if (!name.trim()) return;
+
+    // Fila principal
+    let tr = document.createElement("tr");
+    tr.style.borderBottom = "1px solid rgba(255, 255, 255, 0.05)";
+
+    // Columna 1: ID con Badge
+    let td1 = document.createElement("td");
+    td1.classList.add("px-3", "py-3");
+
+    let span = document.createElement("span");
+    span.classList.add("badge", "rounded-2", "px-2.5", "py-1.5");
+    span.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+    span.style.color = "#ff4d4d";
+    span.style.fontWeight = "600";
+    
+    carreerRows = carreerRows + 1;
+    span.textContent = "#" + carreerRows;
+    td1.appendChild(span);
+
+    // Columna 2: Nombre
+    let td2 = document.createElement("td");
+    td2.classList.add("px-3", "py-3", "fw-medium");
+    td2.style.color = "#e2e8f0";
+    td2.textContent = name;
+
+    // Columna 3: Botones de Acción
+    let td3 = document.createElement("td");
+    td3.classList.add("px-3", "py-3", "text-end");
+
+    // Botón Editar
+    let btnEdit = document.createElement("a");
+    btnEdit.href = "#";
+    btnEdit.classList.add("btn", "btn-sm", "px-2.5", "py-1.5", "me-1", "text-white-50", "border-0");
+    btnEdit.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+    btnEdit.style.fontSize = "0.8rem";
+    btnEdit.innerHTML = '<i class="fa fa-edit me-1" style="color: #ffaa00;"></i> Editar';
+
+    // Botón Eliminar
+    let btnDelete = document.createElement("a");
+    btnDelete.href = "#";
+    btnDelete.classList.add("btn", "btn-sm", "px-2.5", "py-1.5", "border-0");
+    btnDelete.style.backgroundColor = "rgba(255, 77, 77, 0.15)";
+    btnDelete.style.color = "#ff4d4d";
+    btnDelete.style.fontSize = "0.8rem";
+    btnDelete.innerHTML = '<i class="fa fa-trash me-1"></i> Eliminar';
+
+    td3.appendChild(btnEdit);
+    td3.appendChild(btnDelete);
+
+    // Unir todo
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+
+    // Insertar en el <tbody> (children[1])
+    carreersTable.children[1].appendChild(tr);
+
+    document.getElementById("name").value = "";
+}
+
+function eliminar(id, event){
+    let td = event.currentTarget.parentElement.parentElement;
+    td.remove();
+
+}
+
+function editar(id, event){
+
+    let tr = event.currentTarget.parentElement.parentElement;
+    let idRow= children[0].innerHTML;
+    let name = children[1].innerHTML;
+
+    document.getElementById("name").value = name;
+}
+</script>
